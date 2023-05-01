@@ -79,8 +79,8 @@ prep_build() {
 
 	echo "Syncing repos"
 	repo sync -j4 -c -q --force-sync --no-clone-bundle --optimized-fetch --prune
-
 	echo ""
+
 
 	echo "Setting up build environment"
 	source build/envsetup.sh &> /dev/null
@@ -112,8 +112,12 @@ finalize_treble() {
     git clean -fdx
     bash generate.sh arrow
     cd ../../..
-
+    	
+    echo "Copying last arrow.mk"
+    cp ./arrow_build_leaos/arrow.mk ./device/phh/treble/arrow.mk
+    echo ""
 }
+
 
 build_treble() {
     case "${1}" in
@@ -166,7 +170,7 @@ do
     echo "Starting build for ${MODE} ${var}"
     build_${MODE} ${var}
 done
-ls ~/build-output | grep 'ArrowOS' || true
+ls ~/build-output | grep 'Arrow' || true
 
 END=`date +%s`
 ELAPSEDM=$(($(($END-$START))/60))
