@@ -24,3 +24,8 @@ TARGET_BOOT_ANIMATION_RES := 720
 
 # APN
 PRODUCT_PACKAGES += apns-conf.xml
+
+#Charger image
+PRODUCT_PACKAGES += \
+    product_charger_res_images
+
