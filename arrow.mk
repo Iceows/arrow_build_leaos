@@ -29,3 +29,7 @@ PRODUCT_PACKAGES += apns-conf.xml
 PRODUCT_PACKAGES += \
     product_charger_res_images
 
+# ldac  sony codecs
+PRODUCT_PACKAGES += \
+    libldacBT_dec \
+    libldacBT_bco

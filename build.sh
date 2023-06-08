@@ -78,8 +78,7 @@ prep_build() {
 	echo ""
 
 	echo "Syncing repos"
-	repo sync -j4 -c -q --force-sync --no-clone-bundle --optimized-fetch --prune
-	echo ""
+        repo sync -c -j 1 --force-sync || repo sync -c -j1 --force-sync
 
 
 	echo "Setting up build environment"
@@ -116,6 +115,8 @@ finalize_treble() {
     echo "Copying last arrow.mk"
     cp ./arrow_build_leaos/arrow.mk ./device/phh/treble/arrow.mk
     echo ""
+    
+    rm -rf device/phh/treble/charger
 }
 
 
