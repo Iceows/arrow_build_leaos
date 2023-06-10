@@ -78,7 +78,7 @@ prep_build() {
 	echo ""
 
 	echo "Syncing repos"
-        repo sync -c -j 1 --force-sync || repo sync -c -j1 --force-sync
+        repo sync --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
 
 	echo "Setting up build environment"
@@ -106,9 +106,7 @@ finalize_device() {
 
 
 finalize_treble() {
-    rm -f device/*/sepolicy/common/private/genfs_contexts
     cd device/phh/treble
-    git clean -fdx
     bash generate.sh arrow
     cd ../../..
     	
@@ -116,6 +114,7 @@ finalize_treble() {
     cp ./arrow_build_leaos/arrow.mk ./device/phh/treble/arrow.mk
     echo ""
     
+    echo "remove anim charger last arrow.mk"
     rm -rf device/phh/treble/charger
 }
 
@@ -132,10 +131,7 @@ build_treble() {
     esac
     lunch ${TARGET}-userdebug
 
-    make RELAX_USES_LIBRARY_CHECK=true BUILD_NUMBER=$BUILD_DATE installclean
-    make RELAX_USES_LIBRARY_CHECK=true BUILD_NUMBER=$BUILD_DATE -j8 systemimage
-    # don't support OUT_DIR var
-    #make RELAX_USES_LIBRARY_CHECK=true BUILD_NUMBER=$BUILD_DATE vndk-test-sepolicy
+    make -j8 systemimage
 
     mv $OUT/system.img ~/build-output/Arrow-A13-$BUILD_DATE-${TARGET}.img
 }
