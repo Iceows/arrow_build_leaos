@@ -68,7 +68,7 @@ ORIGIN_FOLDER="$(dirname "$(readlink -f -- "$0")")"
 
 export OUT_DIR=/home/iceows/build/Arrow13
 
-repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1
+##repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1
 
 prep_build() {
 	echo "Preparing local manifests"
