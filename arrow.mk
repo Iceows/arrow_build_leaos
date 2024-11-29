@@ -13,11 +13,15 @@ TARGET_HAS_FUSEBLK_SEPOLICY_ON_VENDOR := true
 ARROW_GAPPS := true
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.system.ota.json_url=https://raw.githubusercontent.com/naz664/ArrowOS_gsi/13.1/ota.json
+    ro.system.ota.json_url=https://raw.githubusercontent.com/iceows/arrow_build_leaos/13.1/ota.json
 
-#prebuilts
+# prebuilts OpenEUICC
 PRODUCT_PACKAGES += \
-  OpenEUICC \
+  OpenEUICC
+
+# prebuilts GcamGo
+PRODUCT_PACKAGES += \
+  GcamGo
 
 # Set Bootanimation at 720P
 TARGET_BOOT_ANIMATION_RES := 720
@@ -25,11 +29,11 @@ TARGET_BOOT_ANIMATION_RES := 720
 # APN
 PRODUCT_PACKAGES += apns-conf.xml
 
-#Charger image
+# Charger image
 PRODUCT_PACKAGES += \
     product_charger_res_images
 
-# ldac  sony codecs
+# ldac sony codecs
 PRODUCT_PACKAGES += \
     libldacBT_dec \
     libldacBT_bco

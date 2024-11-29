@@ -29,4 +29,7 @@
 <remote name="AndyGC" fetch="https://github.com/AndyCGYan/"/>
 <project path="packages/apps/QcRilAm" name="android_packages_apps_QcRilAm" remote="AndyGC" revision="master"/>
 
+<!-- FMRadio Hisi support -->
+<project path="packages/apps/FMRadio-Hisi" name="android_packages_apps_FMRadio-Hisi" remote="iceows" revision="main" />
+  
 </manifest>
