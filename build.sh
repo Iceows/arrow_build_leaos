@@ -129,10 +129,16 @@ build_treble() {
         ("64BVZ") TARGET=treble_arm64_bvZ;;
         (*) echo "Invalid target - exiting"; exit 1;;
     esac
+
+    
     lunch ${TARGET}-userdebug
-
-    make -j8 systemimage
-
+    #make -j$(nproc --all) installclean
+    make -j$(nproc --all) systemimage
+    
+    make -j$(nproc --all) target-files-package otatools
+    bash ./arrow_build_leaos/sign.sh $HOME/.android-certs $OUT/signed-target_files.zip
+    unzip -jqo $OUT/signed-target_files.zip IMAGES/system.img -d $OUT
+    
     mv $OUT/system.img ~/build-output/Arrow-A13-$BUILD_DATE-${TARGET}.img
 }
 
